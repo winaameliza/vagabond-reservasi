@@ -6,173 +6,380 @@
   <title>Vagabond' Roast — Sistem Reservasi</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-cover bg-center bg-no-repeat min-h-screen" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); backdrop-filter: blur(6px);">
-  
-  <div class="backdrop-blur-xl bg-black/40 min-h-screen w-full text-white p-6">
-    <!-- HEADER -->
-    <header class="flex items-center justify-between mb-8">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-black font-bold text-xl">VR</div>
-        <h1 class="text-3xl font-bold">Vagabond' Roast</h1>
-      </div>
-      <div id="headerUser" class="text-gray-200"></div>
-    </header>
 
-    <!-- AUTH SECTION -->
-    <section id="authSection" class="max-w-md mx-auto mt-10">
-      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-        <h2 class="text-2xl font-semibold mb-4">Login</h2>
-        <input id="loginUser" class="w-full p-3 mb-3 rounded-lg bg-transparent border border-gray-600" placeholder="Username">
-        <input id="loginPass" type="password" class="w-full p-3 mb-5 rounded-lg bg-transparent border border-gray-600" placeholder="Password">
-        <button id="loginBtn" class="w-full p-3 bg-yellow-500 text-black font-semibold rounded-lg">Masuk</button>
+<body class="bg-cover bg-center bg-no-repeat min-h-screen" 
+style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); backdrop-filter: blur(6px);">
 
-        <p class="text-center mt-4 text-gray-300">Belum punya akun?
-          <button id="toRegister" class="text-yellow-400 underline">Daftar</button>
-        </p>
-      </div>
+<div class="backdrop-blur-xl bg-black/40 min-h-screen w-full text-white p-6">
 
-      <!-- REGISTER -->
-      <div id="registerBox" class="bg-black/40 p-6 rounded-2xl shadow-xl mt-6 hidden">
-        <h2 class="text-2xl font-semibold mb-4">Daftar Akun</h2>
-        <input id="regUser" class="w-full p-3 mb-3 rounded-lg bg-transparent border border-gray-600" placeholder="Username">
-        <input id="regPass" type="password" class="w-full p-3 mb-5 rounded-lg bg-transparent border border-gray-600" placeholder="Password">
-        <button id="regBtn" class="w-full p-3 bg-green-500 text-black font-semibold rounded-lg">Daftar</button>
-      </div>
-    </section>
+  <!-- HEADER -->
+  <header class="flex items-center justify-between mb-8">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-black font-bold text-xl">VR</div>
+      <h1 class="text-3xl font-bold">Vagabond' Roast</h1>
+    </div>
+    <div id="headerUser" class="text-gray-200"></div>
+  </header>
 
+  <!-- AUTH SECTION -->
+  <section id="authSection" class="max-w-md mx-auto mt-10">
+    <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+      <h2 class="text-2xl font-semibold mb-4">Login</h2>
+      <input id="loginUser" class="w-full p-3 mb-3 rounded-lg bg-transparent border border-gray-600" placeholder="Username">
+      <input id="loginPass" type="password" class="w-full p-3 mb-5 rounded-lg bg-transparent border border-gray-600" placeholder="Password">
+      <button id="loginBtn" class="w-full p-3 bg-yellow-500 text-black font-semibold rounded-lg">Masuk</button>
 
-    <!-- DASHBOARD -->
-    <section id="dashboard" class="hidden">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-
-        <!-- FORM RESERVASI -->
-        <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-          <h2 class="text-2xl font-semibold mb-4">Buat Reservasi</h2>
-
-          <form id="reserveForm" class="space-y-4">
-            <input id="resvNama" class="w-full p-3 rounded-lg bg-transparent border border-gray-600" placeholder="Nama Pemesan" required>
-
-            <div class="grid grid-cols-2 gap-4">
-              <input id="resvTanggal" type="date" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
-              <input id="resvWaktu" type="time" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-              <input id="resvJumlah" type="number" min="1" class="p-3 rounded-lg bg-transparent border border-gray-600" placeholder="Jumlah Orang" required>
-
-              <select id="resvArea" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
-                <option value="Indoor">Indoor</option>
-                <option value="Outdoor">Outdoor</option>
-              </select>
-            </div>
-
-            <select id="resvJenis" class="w-full p-3 rounded-lg bg-transparent border border-gray-600">
-              <option value="Restoran">Restoran</option>
-              <option value="Cafe">Café</option>
-            </select>
-
-            <!-- ✅ NOMOR MEJA FINAL -->
-            <div class="flex flex-col mt-2">
-              <label for="resvMeja" class="text-gray-300 mb-1">Nomor Meja</label>
-              <input id="resvMeja" type="number" min="1" max="15" placeholder="Pilih nomor meja (1–15)" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
-            </div>
-
-            <div class="flex gap-3 pt-3">
-              <button class="flex-1 bg-orange-500 p-3 rounded-lg font-semibold" type="submit">Simpan Reservasi</button>
-              <button id="resetBtn" class="flex-1 bg-gray-600 p-3 rounded-lg" type="button">Bersihkan</button>
-            </div>
-          </form>
-        </div>
-
-        <!-- RIWAYAT -->
-        <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-semibold">Riwayat Reservasi</h2>
-            <div>Notifikasi: <span id="notifCount">0</span></div>
-          </div>
-          <div id="riwayatContainer" class="space-y-3 text-gray-300">Belum ada reservasi.</div>
-
-          <div class="mt-5 flex gap-3">
-            <button id="toExportBtn" class="flex-1 bg-blue-600 p-3 rounded-lg font-semibold">Export CSV</button>
-            <button id="adminBtn" class="flex-1 bg-red-600 p-3 rounded-lg font-semibold">Admin</button>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="flex justify-end mt-6">
-        <button id="logoutBtn" class="bg-gray-700 px-4 py-2 rounded-lg">Logout</button>
-      </div>
-    </section>
-
-
-    <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur flex items-center justify-center hidden">
-      <div class="bg-gray-900 w-11/12 md:w-3/4 p-6 rounded-2xl shadow-xl max-h-[80vh] overflow-auto">
-        <h2 class="text-2xl font-semibold mb-4">Semua Reservasi</h2>
-        <div id="adminList" class="text-sm text-gray-200"></div>
-        <div class="flex justify-end gap-3 mt-4">
-          <button id="adminExportBtn" class="px-4 py-2 bg-blue-600 rounded-lg">Export Semua</button>
-          <button id="adminClose" class="px-4 py-2 bg-gray-700 rounded-lg">Tutup</button>
-        </div>
-      </div>
+      <p class="text-center mt-4 text-gray-300">Belum punya akun?
+        <button id="toRegister" class="text-yellow-400 underline">Daftar</button>
+      </p>
     </div>
 
-    
-    <!-- TOAST -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg opacity-0 transition"></div>
+    <!-- REGISTER -->
+    <div id="registerBox" class="bg-black/40 p-6 rounded-2xl shadow-xl mt-6 hidden">
+      <h2 class="text-2xl font-semibold mb-4">Daftar Akun</h2>
+      <input id="regUser" class="w-full p-3 mb-3 rounded-lg bg-transparent border border-gray-600" placeholder="Username">
+      <input id="regPass" type="password" class="w-full p-3 mb-5 rounded-lg bg-transparent border border-gray-600" placeholder="Password">
+      <button id="regBtn" class="w-full p-3 bg-green-500 text-black font-semibold rounded-lg">Daftar</button>
+    </div>
+  </section>
 
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+
+      <!-- FORM RESERVASI -->
+      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-semibold mb-4">Buat Reservasi</h2>
+
+        <form id="reserveForm" class="space-y-4">
+          <input id="resvNama" class="w-full p-3 rounded-lg bg-transparent border border-gray-600" placeholder="Nama Pemesan" required>
+
+          <div class="grid grid-cols-2 gap-4">
+            <input id="resvTanggal" type="date" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
+            <input id="resvWaktu" type="time" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <input id="resvJumlah" type="number" min="1" class="p-3 rounded-lg bg-transparent border border-gray-600" placeholder="Jumlah Orang" required>
+
+            <select id="resvArea" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
+              <option value="Indoor">Indoor</option>
+              <option value="Outdoor">Outdoor</option>
+            </select>
+          </div>
+
+          <select id="resvJenis" class="w-full p-3 rounded-lg bg-transparent border border-gray-600">
+            <option value="Restoran">Restoran</option>
+            <option value="Cafe">Café</option>
+          </select>
+
+          <!-- Nomor Meja -->
+          <div class="flex flex-col mt-2">
+            <label class="text-gray-300 mb-1">Nomor Meja</label>
+            <input id="resvMeja" type="number" min="1" max="15" placeholder="Pilih nomor meja (1–15)" class="p-3 rounded-lg bg-transparent border border-gray-600" required>
+          </div>
+
+          <div class="flex gap-3 pt-3">
+            <button class="flex-1 bg-orange-500 p-3 rounded-lg font-semibold" type="submit">Simpan Reservasi</button>
+            <button id="resetBtn" class="flex-1 bg-gray-600 p-3 rounded-lg" type="button">Bersihkan</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIWAYAT -->
+      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold">Riwayat Reservasi</h2>
+          <div>Notifikasi: <span id="notifCount">0</span></div>
+        </div>
+        <div id="riwayatContainer" class="space-y-3 text-gray-300">Belum ada reservasi.</div>
+
+        <div class="mt-5 flex gap-3">
+          <button id="toExportBtn" class="flex-1 bg-blue-600 p-3 rounded-lg font-semibold">Export CSV</button>
+          <button id="adminBtn" class="flex-1 bg-red-600 p-3 rounded-lg font-semibold">Admin</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex justify-end mt-6">
+      <button id="logoutBtn" class="bg-gray-700 px-4 py-2 rounded-lg">Logout</button>
+    </div>
+  </section>
+
+
+  <!-- ADMIN MODAL -->
+  <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur flex items-center justify-center hidden">
+    <div class="bg-gray-900 w-11/12 md:w-3/4 p-6 rounded-2xl shadow-xl max-h-[80vh] overflow-auto">
+      <h2 class="text-2xl font-semibold mb-4">Semua Reservasi</h2>
+      <div id="adminList" class="text-sm text-gray-200"></div>
+      <div class="flex justify-end gap-3 mt-4">
+        <button id="adminExportBtn" class="px-4 py-2 bg-blue-600 rounded-lg">Export Semua</button>
+        <button id="adminClose" class="px-4 py-2 bg-gray-700 rounded-lg">Tutup</button>
+      </div>
+    </div>
   </div>
 
 
-  <!-- SCRIPT SECTION -->
-  <script>
-    // === SCRIPT FINAL ===
+  <!-- TOAST -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg opacity-0 transition"></div>
+
+</div>
+
+
+
+<!-- SCRIPT FINAL 100% -->
+<script>
+// === DATA SETUP ===
 let users = JSON.parse(localStorage.getItem('users')||'[]');
-let currentUser=null;
+let currentUser = null;
 
-const saveUsers=()=>localStorage.setItem('users',JSON.stringify(users));
-const showToast=(m)=>{const t=document.getElementById('toast');t.textContent=m;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,2000);};
+const saveUsers = () => localStorage.setItem('users', JSON.stringify(users));
+const showToast = (m) => {
+  const t = document.getElementById('toast');
+  t.textContent = m; 
+  t.style.opacity = 1;
+  setTimeout(()=> t.style.opacity = 0, 2000);
+};
 
-const loginBtn=document.getElementById('loginBtn');
-const toRegister=document.getElementById('toRegister');
-const regBtn=document.getElementById('regBtn');
-const authSection=document.getElementById('authSection');
-const registerBox=document.getElementById('registerBox');
-const dashboard=document.getElementById('dashboard');
-const headerUser=document.getElementById('headerUser');
+// ELEMENT
+const loginBtn = document.getElementById('loginBtn');
+const toRegister = document.getElementById('toRegister');
+const regBtn = document.getElementById('regBtn');
+const registerBox = document.getElementById('registerBox');
+const authSection = document.getElementById('authSection');
+const dashboard = document.getElementById('dashboard');
+const headerUser = document.getElementById('headerUser');
 
-function renderHeader(){headerUser.textContent=currentUser?`Halo, ${currentUser.username}`:'';}
+function renderHeader(){
+  headerUser.textContent = currentUser ? `Halo, ${currentUser.username}` : "";
+}
 
-loginBtn.onclick=()=>{
- let u=loginUser.value.trim(),p=loginPass.value.trim();
- let f=users.find(x=>x.username===u&&x.password===p);
- if(!f)return showToast('Login gagal');
- currentUser=f;localStorage.setItem('currentUser',u);openDashboard();};
 
-toRegister.onclick=()=>registerBox.classList.toggle('hidden');
-regBtn.onclick=()=>{
- let u=regUser.value.trim(),p=regPass.value.trim();
- if(!u||!p)return showToast('Isi semua');
- if(users.some(x=>x.username===u))return showToast('Sudah ada');
- users.push({username:u,password:p,reservasi:[]});saveUsers();showToast('Akun dibuat');registerBox.classList.add('hidden');};
+// LOGIN
+loginBtn.onclick = () => {
+  let u = loginUser.value.trim(),
+      p = loginPass.value.trim();
 
-function openDashboard(){authSection.classList.add('hidden');dashboard.classList.remove('hidden');renderHeader();loadRiwayat();}
+  let found = users.find(x => x.username === u && x.password === p);
+  if (!found) return showToast("Login gagal");
 
-// --- Reservasi ---
-const reserveForm=document.getElementById('reserveForm');
-const riwayatContainer=document.getElementById('riwayatContainer');
-const notifCount=document.getElementById('notifCount');
-const resetBtn=document.getElementById('resetBtn');resetBtn.onclick=()=>reserveForm.reset();
+  currentUser = found;
+  localStorage.setItem("currentUser", u);
+  openDashboard();
+};
 
-function isConflict(t,w,j,a){for(const u of users){for(const r of(u.reservasi||[])){if(r.tanggal===t&&r.waktu===w&&r.jenis===j&&r.area===a)return true;}}return false;}
+// REGISTER
+toRegister.onclick = () => registerBox.classList.toggle("hidden");
 
-function loadRiwayat(){riwayatContainer.innerHTML='';let list=currentUser?.reservasi||[];notifCount.textContent=list.length;if(!list.length){riwayatContainer.textContent='Belum ada reservasi.';return;}list.forEach(r=>{let d=document.createElement('div');d.className='bg-gray-800 p-3 rounded-lg flex justify-between';d.innerHTML=`<div><div class='font-semibold'>${r.nama} — ${r.jenis}</div><div class='text-xs text-gray-400'>${new Date(r.tanggal).toLocaleDateString('id-ID')} ${r.waktu} • ${r.jumlah} orang • ${r.area} • Meja ${r.meja}</div></div><button class='text-red-400'>Hapus</button>`;d.querySelector('button').onclick=()=>cancelResv(r.id);riwayatContainer.appendChild(d);});}
+regBtn.onclick = () => {
+  let u = regUser.value.trim(),
+      p = regPass.value.trim();
 
-reserveForm.onsubmit=(e)=>{e.preventDefault();let r={id:Date.now(),nama:resvNama.value.trim(),tanggal:resvTanggal.value,waktu:resvWaktu.value,jumlah:+resvJumlah.value,area:resvArea.value,jenis:resvJenis.value,meja:+resvMeja.value};if(isConflict(r.tanggal,r.waktu,r.jenis,r.area))return showToast('Bentrok');currentUser.reservasi.push(r);users=users.map(u=>u.username===currentUser.username?currentUser:u);saveUsers();showToast('Disimpan');reserveForm.reset();loadRiwayat();};
+  if (!u || !p) return showToast("Isi semua");
+  if (users.some(x => x.username === u)) return showToast("Sudah ada");
 
-function cancelResv(id){currentUser.reservasi=currentUser.reservasi.filter(r=>r.id!==id);users=users.map(u=>u.username===currentUser.username?currentUser:u);saveUsers();loadRiwayat();showToast('Dihapus');}
+  users.push({ username: u, password: p, reservasi: [] });
+  saveUsers();
+  showToast("Akun dibuat");
+  registerBox.classList.add("hidden");
+};
 
+
+// OPEN DASHBOARD
+function openDashboard(){
+  authSection.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+  renderHeader();
+  loadRiwayat();
+}
+
+
+
+// === RESERVASI ===
+const reserveForm = document.getElementById("reserveForm");
+const riwayatContainer = document.getElementById("riwayatContainer");
+const notifCount = document.getElementById("notifCount");
+
+resetBtn.onclick = () => reserveForm.reset();
+
+// Cek bentrok
+function isConflict(t,w,j,a){
+  for(const u of users){
+    for(const r of (u.reservasi || [])){
+      if(r.tanggal===t && r.waktu===w && r.jenis===j && r.area===a){
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+
+// Load riwayat
+function loadRiwayat(){
+  riwayatContainer.innerHTML = "";
+  let list = currentUser?.reservasi || [];
+
+  notifCount.textContent = list.length;
+
+  if (!list.length){
+    riwayatContainer.textContent = "Belum ada reservasi.";
+    return;
+  }
+
+  list.forEach(r=>{
+    let d = document.createElement("div");
+    d.className = "bg-gray-800 p-3 rounded-lg flex justify-between";
+    d.innerHTML = `
+      <div>
+        <div class="font-semibold">${r.nama} — ${r.jenis}</div>
+        <div class="text-xs text-gray-400">
+          ${new Date(r.tanggal).toLocaleDateString('id-ID')} ${r.waktu} • 
+          ${r.jumlah} orang • ${r.area} • Meja ${r.meja}
+        </div>
+      </div>
+      <button class="text-red-400">Hapus</button>
+    `;
+    d.querySelector("button").onclick = () => cancelResv(r.id);
+    riwayatContainer.appendChild(d);
+  });
+}
+
+
+// Simpan reservasi
+reserveForm.onsubmit = (e) => {
+  e.preventDefault();
+
+  let r = {
+    id: Date.now(),
+    nama: resvNama.value.trim(),
+    tanggal: resvTanggal.value,
+    waktu: resvWaktu.value,
+    jumlah: +resvJumlah.value,
+    area: resvArea.value,
+    jenis: resvJenis.value,
+    meja: +resvMeja.value
+  };
+
+  if (isConflict(r.tanggal, r.waktu, r.jenis, r.area))
+    return showToast("Reservasi bentrok!");
+
+  currentUser.reservasi.push(r);
+  users = users.map(u => u.username === currentUser.username ? currentUser : u);
+  saveUsers();
+
+  showToast("Reservasi disimpan!");
+  reserveForm.reset();
+  loadRiwayat();
+};
+
+
+// Hapus reservasi
+function cancelResv(id){
+  currentUser.reservasi = currentUser.reservasi.filter(r => r.id !== id);
+  users = users.map(u => u.username === currentUser.username ? currentUser : u);
+  saveUsers();
+  loadRiwayat();
+  showToast("Dihapus");
+}
+
+
+
+// === EXPORT CSV USER SAJA ===
+document.getElementById("toExportBtn").onclick = () => {
+  if (!currentUser || !currentUser.reservasi.length)
+    return showToast("Tidak ada data");
+
+  let rows = [["Nama","Tanggal","Waktu","Jumlah","Area","Jenis","Meja"]];
+
+  currentUser.reservasi.forEach(r=>{
+    rows.push([r.nama,r.tanggal,r.waktu,r.jumlah,r.area,r.jenis,r.meja]);
+  });
+
+  let csv = rows.map(e => e.join(",")).join("\n");
+  let blob = new Blob([csv], {type:"text/csv"});
+  let url = URL.createObjectURL(blob);
+
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = "reservasi_user.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+
+
+// === ADMIN MODAL ===
+document.getElementById("adminBtn").onclick = () => {
+  const box = document.getElementById("adminList");
+  box.innerHTML = "";
+
+  users.forEach(u=>{
+    (u.reservasi||[]).forEach(r=>{
+      let div = document.createElement("div");
+      div.className = "bg-gray-800 p-3 my-2 rounded-lg";
+      div.innerHTML = `
+        <div class="font-semibold">${r.nama} — ${r.jenis}</div>
+        <div class="text-xs text-gray-400">
+          ${new Date(r.tanggal).toLocaleDateString('id-ID')} ${r.waktu} • 
+          ${r.jumlah} orang • ${r.area} • Meja ${r.meja}
+        </div>
+      `;
+      box.appendChild(div);
+    });
+  });
+
+  document.getElementById("adminModal").classList.remove("hidden");
+};
+
+
+// Tutup modal
+document.getElementById("adminClose").onclick = () => {
+  document.getElementById("adminModal").classList.add("hidden");
+};
+
+
+// Export semua data Admin
+document.getElementById("adminExportBtn").onclick = () => {
+  let rows = [["Nama","Tanggal","Waktu","Jumlah","Area","Jenis","Meja","User"]];
+
+  users.forEach(u=>{
+    (u.reservasi||[]).forEach(r=>{
+      rows.push([
+        r.nama,r.tanggal,r.waktu,r.jumlah,r.area,r.jenis,r.meja,u.username
+      ]);
+    });
+  });
+
+  let csv = rows.map(e => e.join(",")).join("\n");
+  let blob = new Blob([csv], {type:"text/csv"});
+  let url = URL.createObjectURL(blob);
+
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = "semua_reservasi.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+
+// LOGOUT
+document.getElementById("logoutBtn").onclick = () => {
+  localStorage.removeItem("currentUser");
+  location.reload();
+};
+
+
+// AUTO LOGIN JIKA SUDAH LOGIN SEBELUMNYA
+window.onload = () => {
+  let u = localStorage.getItem("currentUser");
+  if (u){
+    currentUser = users.find(x => x.username === u);
+    if (currentUser) openDashboard();
+  }
+};
 </script>
 
 </body>
